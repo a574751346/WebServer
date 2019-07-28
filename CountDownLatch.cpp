@@ -1,3 +1,4 @@
+//监控多个线程数量变化
 #include "CountDownLatch.h"
 
 CountDownLatch::CountDownLatch(int count_):

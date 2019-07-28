@@ -1,0 +1,29 @@
+#include "LogFile.h"
+#include "FileUtil.h"
+#include <errno.h>
+#include <stdio.h>
+#include <time.h>
+using namespace std;
+
+LogFile::LogFile(const std::string &basename, int flushEveryN)
+:   basename_(basename),
+    flushEveryN_(flushEveryN),
+    count_(0),
+    mutex_(new MutexLock)
+{
+    file_.reset(new AppendFile(basename));
+}
+
+LogFile::~LogFile() {}
+
+void LogFile::append(const char *logline, int len)
+{
+    MutexLockGuard lock(*mutex_);
+    append_unlocked(logline, len);
+}
+
+void LogFile::flush()
+{
+    MutexLockGuard lock(*mutex_);
+    file_->flush();
+}
