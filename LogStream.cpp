@@ -49,3 +49,58 @@ LogStream& LogStream::operator<<(unsigned short v)
     *this << static_cast<unsigned int>(v);
     return *this;
 }
+LogStream& LogStream::operator<<(int v)
+{
+    formatInteger(v);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(unsigned int v)
+{
+    formatInteger(v);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(long v)
+{
+    formatInteger(v);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(unsigned long v)
+{
+    formatInteger(v);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(long long v)
+{
+    formatInteger(v);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(unsigned long long v)
+{
+    formatInteger(v);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(double v)
+{
+    if (buffer_.avail() >= kMaxNumericSize)
+    {
+        int len = snprintf(buffer_.current(), kMaxNumericSize, "%.12g", v);
+        buffer_.add(len);
+    }
+    return *this;
+}
+
+LogStream& LogStream::operator<<(long double v)
+{
+    if (buffer_.avail() >= kMaxNumericSize)
+    {
+        int len = snprintf(buffer_.current(), kMaxNumericSize, "%.12Lg", v);
+        buffer_.add(len);
+    }
+    return *this;
+}
