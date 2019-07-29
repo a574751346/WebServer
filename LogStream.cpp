@@ -37,3 +37,15 @@ void LogStream::formatInteger(T v)
         buffer_.add(len);
     }
 }
+
+LogStream& LogStream::operator<<(short v)
+{
+    *this << static_cast<int>(v);
+    return *this;
+}
+
+LogStream& LogStream::operator<<(unsigned short v)
+{
+    *this << static_cast<unsigned int>(v);
+    return *this;
+}
