@@ -38,11 +38,11 @@ private:
     typedef FixedBuffer<kLargeBuffer> Buffer;
     typedef std::vector<std::shared_ptr<Buffer>> BufferVector;
     typedef std::shared_ptr<Buffer> BufferPtr;
-    typedef int flushInterval_;
+    const int flushInterval_;
     bool running_;
     std::string basename_;
     Thread thread_;
-    MutexLock mutex;
+    MutexLock mutex_;
     Condition cond_;
     BufferPtr currentBuffer_;
     BufferPtr nextBuffer_;

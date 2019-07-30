@@ -1,2 +1,6 @@
-#This is a README file.
-#This repository is build for my C++ Web development using.
+# This is a README file.
+# This repository is build for my C++ Web development using.
+
+# noncopyable
+# 创建一个不可拷贝类，作为之后的基类
+# 继承它的子类有 MutexLock MutexLockGuard Condition AppendFile CountDownLatch

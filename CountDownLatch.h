@@ -6,11 +6,11 @@
 class CountDownLatch: noncopyable
 {
 public:
-    explicit CountDownLatch(int count_);
+    explicit CountDownLatch(int count);
     void wait();
     void countDown();
 private:
-    mutable MutexLock mutex;
-    Condition condition;
-    int count;
+    mutable MutexLock mutex_;
+    Condition condition_;
+    int count_;
 };
